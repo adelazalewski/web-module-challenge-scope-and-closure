@@ -42,6 +42,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+A: 1.functions reach out and grab and use variables(WHEN NEEDED) that are not defined inside the function itself but on the global scope/outer scope, BUT 2. A CLOSURE IS LIKE A BACKPACK THAT LOOKS AND TAKES(USES)THE VARIABLE THAT IS "STORED" INSIDE ALREADY, IN THE LOCAL EXECUTING CONTEXT/SCOPE AND ONCE THE FUNCTION IS DONE IT PUTS IT BACK IN THE BACKPACK(keeps it in memory), AND IS NOT BEING DELETED ONCE THE FUNCTUION IS DONE
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,16 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+A: when you create and name dansRoll variable in the global scope you asign it to a function and a closure, this opens up a local context. the closure is the returned function that has stored in memory the newRoll variable, in its scope.  
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+A:name the parameter is always the same and the newRoll variable that is in closure is the one that changes because it was stored in memory by the closure.
+
 c. What is the lexical scope of `newRoll`? 
+A: lexical scope = a function has access to a variable that is defined in its calling context.
+so newRoll has a local scope/ local lexical scope.
 
 ### Task 2c - Exit Ticket
 
