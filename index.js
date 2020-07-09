@@ -49,11 +49,11 @@ function counterMaker() {
 }
 
 const counter1 = counterMaker();
-console.log(counter1());
+console.log(counter1()); 
 // console.log(counter1());
 // console.log(counter1());
 // console.log(counter1());
-// counter2 code
+//counter2 code
 let count = 0;
 
 function counter2() {
@@ -68,15 +68,17 @@ console.log(counter2());
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(max){
-let score = Math.floor(Math.random()*Math.floor(max));
+function inning(){
+let score = Math.floor(Math.random()*Math.floor(3));
 return score;
 }
-console.log(inning(3));
-// console.log(inning(3));
-// console.log(inning(3));
-// console.log(inning(3));
-// console.log(inning(3));
+console.log(inning());
+// console.log(inning());
+// console.log(inning());
+// console.log(inning());
+// console.log(inning());
+// console.log(inning());
+// console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -92,10 +94,14 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(inning, number){
+function finalScore(inning, numberInnings){
 let objectScore = {};
-objectScore.Home = inning(number);
-objectScore.Away = inning(number);
+objectScore.Home = 0;
+objectScore.Away = 0;
+for(let i = 1; i<numberInnings; i++){
+objectScore.Home = objectScore.Home + inning(i);
+objectScore.Away = objectScore.Away + inning(i);
+}
 return objectScore;
 }
 console.log(finalScore(inning, 9));
@@ -103,9 +109,6 @@ console.log(finalScore(inning, 9));
 // console.log(finalScore(inning, 9));
 // console.log(finalScore(inning, 9));
 // console.log(finalScore(inning, 9));
-//const inningsScore = finalScore(inning, 9);
-//let test2 = inningsScore();
-//console.log(test);
 
 
 /* Task 4: 
@@ -114,28 +117,34 @@ Create a function called `scoreboard` that accepts the following parameters:
 
 (1)callback function "inning" that you wrote above
 (2) a number of innings
+(3)callback function "getInningScore"
 
 and returns the score at each pont in the game, like so:
 
-1st inning: 0 - 2
-2nd inning: 1 - 3
-3rd inning: 1 - 3
-4th inning: 2 - 4
-5th inning: 4 - 6
-6th inning: 4 - 6
-7th inning: 4 - 6
-8th inning: 5 - 8
-9th inning: 6 - 10
+1st inning: awayTeam - homeTeam
+2nd inning: awayTeam - homeTeam
+3rd inning: awayTeam - homeTeam
+4th inning: awayTeam - homeTeam
+5th inning: awayTeam - homeTeam
+6th inning: awayTeam - homeTeam
+7th inning: awayTeam - homeTeam
+8th inning: awayTeam - homeTeam
+9th inning: awayTeam - homeTeam
 
-Final Score: 6 - 10 */
+Final Score: awayTeam - homeTeam */
 
 function scoreboard(inning, number) {
-  let score = inning(number);
-  return `1st inning : ${score} - ${score} <br> 2nd inning: ${score} - ${score} <br> 3rd inning: ${score} - ${score} <br> 4th inning: ${score} - ${score} "<br>" 5th inning: ${score} - ${score} <br> 6th inning: ${score} - ${score} <br> 7th inning: ${score} - ${score} <br> 8th inning: ${score} - ${score} "<br>" 9th inning: ${score} - ${score} <br> Final Score: ${score} - ${score}`;
+  let homeTeam = [];
+  let awayTeam = [];
+
+  for(let i = 0; i<=number; i++){
+    var scoreHome = inning(i);
+    var scoreVisitor = inning(i);
+  }
+  return `1st inning : ${scoreVisitor} - ${scoreHome}\n2nd inning: ${scoreVisitor} - ${scoreHome}\n3rd inning: ${scoreVisitor} - ${scoreHome}\n4th inning: ${scoreVisitor} - ${scoreHome}\n5th inning: ${scoreVisitor} - ${scoreHome}\n6th inning: ${scoreVisitor} - ${scoreHome}\n7th inning: ${scoreVisitor} - ${scoreHome}\n8th inning: ${scoreVisitor} - ${scoreHome}\n9th inning: ${scoreVisitor} - ${scoreHome}\nFinal Score: ${scoreVisitor} - ${scoreHome}`;
 };
 console.log(scoreboard(inning, 9));
-console.log(scoreboard(inning, 9));
-console.log(scoreboard(inning, 9));
-console.log(scoreboard(inning, 9));
+// console.log(scoreboard(inning, 9));
+// console.log(scoreboard(inning, 9));
 
 
