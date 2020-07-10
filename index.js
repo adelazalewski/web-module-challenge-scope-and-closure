@@ -29,15 +29,15 @@ console.log(test);
  * 
  * 1. What is the difference between counter1 and counter2?
  
- * they seem to log the same thing, but counter2 is not returning a function 
+ * they seem to log the same thing, but counter1 keeps its variable in memory and the count of it because it's nested inside the function , counter2 will have to search for the variable it needs on the global scope every time it runs.  
  
  * 2. Which of the two uses a closure? How can you tell?
  
- *  counter1 has closure and counter2 is not using closure. counter2 is reaching outside to the global scope for a variable and counter1 is using the variable nested in its scope.
+ *  counter1 has closure and counter2 is not using closure. counter2 is reaching outside to the global scope for a variable and counter1 is using the variable nested in its scope keeping it in memory.
 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
 
- *counter1 would be preferable if you would want to keep track of the count since it's in the memory of the closure function and counter2 would be good if you would need to reset the score/count every time.
+ *counter1 would be preferable if you would want to keep track of the count since it's in the memory of the closure function to use it for a score board lets say and counter2 would be good if you would need to reset/redefine the score/count every time(for counter 2 the variable that it uses it's free to be used in as many functions/counts as you need but that over runs/ over works the program and you can lose the variable down the road/ over ride that variable down the road).
 */
 
 // counter1 code
@@ -50,8 +50,8 @@ function counterMaker() {
 
 const counter1 = counterMaker();
 console.log(counter1()); 
-// console.log(counter1());
-// console.log(counter1());
+//  console.log(counter1());
+//  console.log(counter1());
 // console.log(counter1());
 //counter2 code
 let count = 0;
@@ -60,6 +60,7 @@ function counter2() {
   return count++;
 }
 console.log(counter2());
+// console.log(counter2());
 // console.log(counter2());
 // console.log(counter2());
 // console.log(counter2());
@@ -99,8 +100,8 @@ let objectScore = {};
 objectScore.Home = 0;
 objectScore.Away = 0;
 for(let i = 1; i<numberInnings; i++){
-objectScore.Home = objectScore.Home + inning(i);
-objectScore.Away = objectScore.Away + inning(i);
+objectScore.Home = objectScore.Home + inning();
+objectScore.Away = objectScore.Away + inning();
 }
 return objectScore;
 }
@@ -132,18 +133,28 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 
 Final Score: awayTeam - homeTeam */
-
-function scoreboard(inning, number) {
-  let homeTeam = [];
-  let awayTeam = [];
-
-  for(let i = 0; i<=number; i++){
-    var scoreHome = inning(i);
-    var scoreVisitor = inning(i);
+function getInningScore(inning){
+  let home = 0;
+  let away = 0;
+  return function(){
+    home += inning();
+    away += inning();
+    return `{Home: ${home}, Away: ${away}`;
   }
-  return `1st inning : ${scoreVisitor} - ${scoreHome}\n2nd inning: ${scoreVisitor} - ${scoreHome}\n3rd inning: ${scoreVisitor} - ${scoreHome}\n4th inning: ${scoreVisitor} - ${scoreHome}\n5th inning: ${scoreVisitor} - ${scoreHome}\n6th inning: ${scoreVisitor} - ${scoreHome}\n7th inning: ${scoreVisitor} - ${scoreHome}\n8th inning: ${scoreVisitor} - ${scoreHome}\n9th inning: ${scoreVisitor} - ${scoreHome}\nFinal Score: ${scoreVisitor} - ${scoreHome}`;
+}
+console.log(getInningScore(inning));
+function scoreboard(inning, getInningScore, numberOfInnings) {
+  let awayTeam = 0;
+  let homeTeam = 0;
+  
+  for(let i = 1; i<numberOfInnings; i++){
+    awayTeam += getInningScore(inning());
+    homeTeam += getInningScore(inning());
+    
+  }
+  return `1st inning : ${homeTeam} - ${awayTeam}\n2nd inning: ${homeTeam} - ${awayTeam}\n3rd inning: ${homeTeam} - ${awayTeam}\n4th inning: ${homeTeam} - ${awayTeam}\n5th inning: ${homeTeam} - ${awayTeam}\n6th inning: ${homeTeam} - ${awayTeam}\n7th inning: ${homeTeam} - ${awayTeam}\n8th inning: ${homeTeam} - ${awayTeam}\n9th inning: ${homeTeam} - ${awayTeam}\nFinal Score: ${homeTeam} - ${awayTeam}`;
 };
-console.log(scoreboard(inning, 9));
+console.log(scoreboard(inning, getInningScore, 9));
 // console.log(scoreboard(inning, 9));
 // console.log(scoreboard(inning, 9));
 

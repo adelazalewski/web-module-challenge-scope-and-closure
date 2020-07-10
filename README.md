@@ -43,7 +43,7 @@ Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
 
-A: 1.functions reach out and grab and use variables(WHEN NEEDED) that are not defined inside the function itself but on the global scope/outer scope, BUT 2. A CLOSURE IS LIKE A BACKPACK THAT LOOKS AND TAKES(USES)THE VARIABLE THAT IS "STORED" INSIDE ALREADY, IN THE LOCAL EXECUTING CONTEXT/SCOPE AND ONCE THE FUNCTION IS DONE IT PUTS IT BACK IN THE BACKPACK(keeps it in memory), AND IS NOT BEING DELETED ONCE THE FUNCTUION IS DONE
+A: 1.functions reach out and grab and use variables(WHEN NEEDED) that are not defined inside the function itself but on the global scope/outer scope, BUT 2. A CLOSURE IS LIKE A BACKPACK THAT LOOKS AND TAKES(USES)THE VARIABLE THAT IS "STORED" INSIDE ALREADY, IN THE LOCAL EXECUTING CONTEXT/SCOPE AND ONCE THE FUNCTION IS DONE IT PUTS IT BACK IN THE BACKPACK(keeps it in memory), AND IS NOT BEING DELETED/forgoten ONCE THE FUNCTUION IS DONE
 
 2. Study the following code, then answer the questions below.
 
@@ -63,6 +63,7 @@ const zoesRoll = personalDice("Zoe");
 
 dansRoll();
 dansRoll();
+zoesRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
@@ -75,7 +76,7 @@ A:name the parameter is always the same and the newRoll variable that is in clos
 
 c. What is the lexical scope of `newRoll`? 
 A: lexical scope = a function has access to a variable that is defined in its calling context.
-so newRoll has a local scope/ local lexical scope.
+so newRoll has a local scope/ is in the local execution contex of that function
 
 ### Task 2c - Exit Ticket
 
@@ -97,15 +98,22 @@ See if you can complete one or more of the following challenges:
 })();
 console.log("a defined? " + (typeof a !== 'undefined'));
 console.log("b defined? " + (typeof b !== 'undefined'));
+// variable a is defined inside a function definition, has function scope, belogs to the local execution context and it's assigned the value of be which is grabed from the global execution context. variable b is defined in the global scope and it does not return undefined. variable a is defined in the function scope only and when called outside that function it returns undefined.
 ```
 
 2. Write a function that would allow you to do this using a closure. (This is another interview question we've seen before - when you're ready for answers, view an explanation [here](https://www.coderbyte.com/algorithm/3-common-javascript-closure-questions)).
 
 ```js
+function createBase(num){
+  return function (x){
+    return x + num;
+  }
+}
 var addSix = createBase(6);
 addSix(10); // returns 16
 addSix(21); // returns 27
 ```
+
 
 3. Research the differences between functional programming and object oriented programming. Then, describe the pros and cons of functional programming vs object-oriented programming. This is a common interview question and great practice!
 
